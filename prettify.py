@@ -1,7 +1,7 @@
 import platform
 from subprocess import call
 import sys
-import os
+import os.path
 import tempfile
 
 LOS = platform.linux_distribution() 
@@ -104,7 +104,6 @@ tempdir = tempfile.mkdtemp()
 call(['git', 'clone', 'https://github.com/FireFaced/dotfiles.git', tempdir])
 configFish = query_yes_no('Install julian.demille fish configuration?', default='yes')
 if configFish:
-    call(['mkdir', '-p'])
     call(['curl', '-Lo', os.path.expand('~/.config/fish/functions/fisher.fish'), '--create-dirs', 'https://git.io/fisher'])
     call(['cp', '-Rv', tempdir + '/.config/fish', os.path.expand('~/.config')])
     call(['fish', '-c', 'fisher'])
