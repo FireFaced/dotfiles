@@ -103,12 +103,13 @@ tempdir = tempfile.mkdtemp()
 call(['git', 'clone', 'https://github.com/FireFaced/dotfiles.git', tempdir])
 configFish = query_yes_no('Install julian.demille fish configuration?', default='yes')
 if configFish:
-    call(['curl', '-Lo', '~/.config/fish/functions/fisher.fish', '--create-dirs', 'https://git.io/fisher'])
-    call(['cp', '-av', tempdir + '/.config/fish', '~/.config'])
+    call(['mkdir', '-p'])
+    call(['curl', '-Lo', os.path.expand('~/.config/fish/functions/fisher.fish'), '--create-dirs', 'https://git.io/fisher'])
+    call(['cp', '-Rv', tempdir + '/.config/fish', os.path.expand('~/.config')])
     call(['fish', '-c', 'fisher'])
 configNvim = query_yes_no('Install julian.demille neovim configuration?', default='yes')
 if configNvim:
-    call(['curl', '-fLo', '~/.local/share/nvim/site/autoload/plug.vim', '--create-dirs',
+    call(['curl', '-fLo', os.path.expand('~/.local/share/nvim/site/autoload/plug.vim'), '--create-dirs',
           'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'])
-    call(['cp', '-av', tempdir + '/.config/nvim', '~/.config'])
+    call(['cp', '-av', tempdir + '/.config/nvim', os.path.expand('~/.config')])
     call(['nvim', '+PlugInstall'])
