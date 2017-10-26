@@ -1,6 +1,7 @@
 import platform
 from subprocess import call
 import sys
+import os
 import tempfile
 
 LOS = platform.linux_distribution() 
