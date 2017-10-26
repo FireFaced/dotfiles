@@ -43,8 +43,8 @@ def query_yes_no(question, default="yes"):
 installFish = query_yes_no('Install fish?', default='yes')
 if installFish:
     if OS == 'Fedora':
-        call(['sudo', 'dnf', '-y', 'install', 'fish', 'python-pip', 'python-devel', 'git'])
-        call(['sudo', 'pip', 'install', 'thefuck'])
+        call(['sudo', 'dnf', '-y', 'install', 'fish', 'python3-pip', 'python3-devel', 'git'])
+        call(['sudo', 'pip3', 'install', 'thefuck'])
     elif OS == 'CentOS':
         if '6' in VERSION:
             VERSION = 6
@@ -53,8 +53,9 @@ if installFish:
         call(['sudo', 'curl', '-Lo', '/etc/yum.repos.d/fish.repo',
               'https://download.opensuse.org/repositories/shells:fish:release:2/CentOS_' + str(
                   VERSION) + '/shells:fish:release:2.repo'])
-        call(['sudo', 'yum', '-y', 'install', 'fish', 'python-pip', 'python-devel', 'git'])
-        call(['sudo', 'pip', 'install', 'thefuck'])
+        call(['sudo', 'yum', '-y', 'install', 'epel-release'])
+        call(['sudo', 'yum', '-y', 'install', 'fish', 'python3-pip', 'python3-devel', 'git'])
+        call(['sudo', 'pip3', 'install', 'thefuck'])
     elif OS == 'debian':
         if '9' in VERSION:
             VERSION = 9
@@ -63,13 +64,13 @@ if installFish:
         call(['echo', '"deb http://download.opensuse.org/repositories/shells:/fish:/release:/2/Debian_' + str(
             VERSION) + '.0/ /"', '| sudo tee -a /etc/apt.sources.list.d/fish.list'])
         call(['sudo', 'apt-get', 'update'])
-        call(['sudo', 'apt-get', '-y', 'install', 'fish', 'python-pip', 'python-dev', 'git'])
-        call(['sudo', 'pip', 'install', 'psutil', 'thefuck'])
+        call(['sudo', 'apt-get', '-y', 'install', 'fish', 'python3-pip', 'python3-dev', 'git'])
+        call(['sudo', 'pip3', 'install', 'psutil', 'thefuck'])
     elif OS == 'Ubuntu':
         call(['sudo', 'add-apt-repository', '-y', 'ppa:fish-shell/release-2'])
         call(['sudo', 'apt-get', 'update'])
-        call(['sudo', 'apt-get', '-y', 'install', 'fish', 'python-pip', 'python-dev', 'git'])
-        call(['sudo', 'pip', 'install', 'psutil', 'thefuck'])
+        call(['sudo', 'apt-get', '-y', 'install', 'fish', 'python3-pip', 'python3-dev', 'git'])
+        call(['sudo', 'pip3', 'install', 'psutil', 'thefuck'])
     else:
         print 'One of two things has happened:'
         print '1) I could not detect your OS'
