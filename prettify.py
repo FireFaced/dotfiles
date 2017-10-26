@@ -3,9 +3,9 @@ from subprocess import call
 import sys
 import tempfile
 
-OS = platform.linux_distribution()
-DISTNAME = OS[0]
-VERSION = OS[1]
+LOS = platform.linux_distribution() 
+OS = LOS[0]
+VERSION = LOS[1]
 
 
 def query_yes_no(question, default="yes"):
