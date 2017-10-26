@@ -49,7 +49,7 @@ if installFish:
             VERSION = 6
         elif '7' in VERSION:
             VERSION = 7
-        call(['sudo', 'curl', '-LOo', '/etc/yum.repos.d/fish.repo',
+        call(['sudo', 'curl', '-Lo', '/etc/yum.repos.d/fish.repo',
               'https://download.opensuse.org/repositories/shells:fish:release:2/CentOS_' + str(
                   VERSION) + '/shells:fish:release:2.repo'])
         call(['sudo', 'yum', '-y', 'install', 'fish', 'python-pip', 'python-devel', 'git'])
@@ -83,7 +83,7 @@ if installNVIM:
         call(['sudo', 'dnf', '-y', 'install', 'neovim'])
     elif OS == 'CentOS':
         call(['sudo', 'yum', '-y', 'install', 'epel-release'])
-        call(['sudo', 'curl', '-LOo', '/etc/yum.repos.d/dperson-neovim-epel-7.repo', 'https://copr.fedorainfracloud.org/coprs/dperson/neovim/repo/epel-7/dperson-neovim-epel-7.repo'])
+        call(['sudo', 'curl', '-Lo', '/etc/yum.repos.d/dperson-neovim-epel-7.repo', 'https://copr.fedorainfracloud.org/coprs/dperson/neovim/repo/epel-7/dperson-neovim-epel-7.repo'])
         call(['sudo', 'yum', '-y', 'install', 'neovim'])
     elif OS == 'debian':
         call(['sudo', 'apt-get', '-y', 'install', 'neovim', 'python-neovim', 'python3-neovim'])
@@ -103,7 +103,7 @@ tempdir = tempfile.mkdtemp()
 call(['git', 'clone', 'https://github.com/FireFaced/dotfiles.git', tempdir])
 configFish = query_yes_no('Install julian.demille fish configuration?', default='yes')
 if configFish:
-    call(['curl', '-LOo', '~/.config/fish/functions/fisher.fish', '--create-dirs', 'https://git.io/fisher'])
+    call(['curl', '-Lo', '~/.config/fish/functions/fisher.fish', '--create-dirs', 'https://git.io/fisher'])
     call(['cp', '-av', tempdir + '/.config/fish', '~/.config'])
     call(['fish', '-c', 'fisher'])
 configNvim = query_yes_no('Install julian.demille neovim configuration?', default='yes')
